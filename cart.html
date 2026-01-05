@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>السلة - متجر الفخامة</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+    * { font-family: 'Cairo', sans-serif; }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+  
+  <!-- Top Bar -->
+  <div class="bg-gray-900 dark:bg-black text-white text-sm py-2">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap gap-2">
+      <div class="flex gap-6 flex-wrap">
+        <span>🚚 شحن مجاني للطلبات فوق 500 ريال</span>
+        <span>↩️ إرجاع سهل خلال 14 يوم</span>
+        <span>💬 دعم 24/7</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-2 text-2xl font-bold text-gray-900 dark:text-white">
+          <img src="images/logo.png" alt="فخامة" class="h-10 w-auto">
+          <span class="font-[Cairo] text-2xl font-extrabold tracking-wide
+             bg-gradient-to-l from-yellow-600 to-yellow-400
+             bg-clip-text text-transparent">
+  فخامة
+</span>
+
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="index.html" class="hover:text-yellow-600 dark:hover:text-yellow-400 transition">الرئيسية</a>
+          <a href="shop.html" class="hover:text-yellow-600 dark:hover:text-yellow-400 transition">المتجر</a>
+          <div class="relative group">
+            <button class="hover:text-yellow-600 dark:hover:text-yellow-400 transition">المجموعات ▼</button>
+            <div class="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-200 dark:border-gray-700">
+              <a href="shop.html?category=ساعات" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">ساعات</a>
+              <a href="shop.html?category=حقائب" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">حقائب</a>
+              <a href="shop.html?category=مجوهرات" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">مجوهرات</a>
+              <a href="shop.html?category=عطور" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">عطور</a>
+            </div>
+          </div>
+          <a href="index.html#about" class="hover:text-yellow-600 dark:hover:text-yellow-400 transition">من نحن</a>
+          <a href="index.html#contact" class="hover:text-yellow-600 dark:hover:text-yellow-400 transition">تواصل</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="searchBtn" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </button>
+          <a href="wishlist.html" class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            <span class="wishlist-counter absolute -top-1 -right-1 bg-yellow-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+          </a>
+          <a href="cart.html" class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <span class="cart-counter absolute -top-1 -right-1 bg-yellow-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+          </a>
+          <button id="darkModeToggle" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">
+            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          </button>
+          <button id="mobileMenuBtn" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Modal -->
+  <div id="searchModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full p-6 relative">
+      <button id="closeSearch" class="absolute top-4 left-4 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">✕</button>
+      <input type="text" id="searchInput" placeholder="ابحث عن منتج..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-500 dark:bg-gray-700 dark:text-white">
+      <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden fixed inset-0 bg-black/50 z-50 hidden">
+    <div class="bg-white dark:bg-gray-800 w-64 h-full p-6">
+      <button id="closeMobileMenu" class="mb-6">✕</button>
+      <a href="index.html" class="block py-2">الرئيسية</a>
+      <a href="shop.html" class="block py-2">المتجر</a>
+      <a href="index.html#about" class="block py-2">من نحن</a>
+      <a href="index.html#contact" class="block py-2">تواصل</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Header -->
+    <div class="container mx-auto px-4 py-8">
+      <nav class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <a href="index.html" class="hover:text-yellow-600 dark:hover:text-yellow-400">الرئيسية</a>
+        <span class="mx-2">/</span>
+        <span>السلة</span>
+      </nav>
+      <h1 class="text-4xl font-bold mb-8">السلة</h1>
+    </div>
+
+    <div class="container mx-auto px-4 pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Cart Items -->
+        <div class="lg:col-span-2">
+          <div id="cartItems" class="space-y-4">
+            <!-- Items will be rendered here -->
+          </div>
+          <div id="emptyCart" class="text-center py-20 hidden">
+            <div class="text-6xl mb-4">🛒</div>
+            <h2 class="text-2xl font-bold mb-4">السلة فارغة</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">ابدأ التسوق لإضافة منتجات إلى السلة</p>
+            <a href="shop.html" class="inline-block px-8 py-4 bg-yellow-600 hover:bg-yellow-700 text-white rounded-xl font-semibold transition">تسوّق الآن</a>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="lg:col-span-1">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 sticky top-24">
+            <h2 class="text-2xl font-bold mb-6">ملخص الطلب</h2>
+            
+            <div class="space-y-4 mb-6">
+              <div class="flex justify-between">
+                <span class="text-gray-600 dark:text-gray-400">الإجمالي قبل الشحن:</span>
+                <span id="subtotal" class="font-semibold">0 ريال</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600 dark:text-gray-400">تقدير الشحن:</span>
+                <span id="shipping" class="font-semibold">0 ريال</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600 dark:text-gray-400">الضرائب:</span>
+                <span id="tax" class="font-semibold">0 ريال</span>
+              </div>
+              <div class="border-t border-gray-200 dark:border-gray-700 pt-4 flex justify-between text-xl font-bold">
+                <span>الإجمالي النهائي:</span>
+                <span id="total" class="text-yellow-600">0 ريال</span>
+              </div>
+            </div>
+
+            <!-- Coupon -->
+            <div class="mb-6">
+              <label class="block font-semibold mb-2">كوبون خصم:</label>
+              <div class="flex gap-2">
+                <input type="text" id="couponCode" placeholder="أدخل الكود" class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+                <button id="applyCoupon" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition">تطبيق</button>
+              </div>
+              <div id="couponMessage" class="mt-2 text-sm"></div>
+            </div>
+
+            <button id="checkoutBtn" class="w-full px-6 py-4 bg-yellow-600 hover:bg-yellow-700 text-white rounded-xl font-semibold transition mb-4">إتمام الطلب</button>
+            <a href="shop.html" class="block text-center text-gray-600 dark:text-gray-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition">← متابعة التسوق</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkout Steps -->
+      <div id="checkoutSteps" class="mt-16 hidden">
+        <div class="max-w-4xl mx-auto">
+          <!-- Steps Indicator -->
+          <div class="flex items-center justify-between mb-12">
+            <div class="flex items-center gap-2 step-indicator active" data-step="1">
+              <div class="w-10 h-10 rounded-full bg-yellow-600 text-white flex items-center justify-center font-bold">1</div>
+              <span class="hidden md:block font-semibold">بيانات الشحن</span>
+            </div>
+            <div class="flex-1 h-1 bg-gray-200 dark:bg-gray-700 mx-4"></div>
+            <div class="flex items-center gap-2 step-indicator" data-step="2">
+              <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex items-center justify-center font-bold">2</div>
+              <span class="hidden md:block">طريقة التوصيل</span>
+            </div>
+            <div class="flex-1 h-1 bg-gray-200 dark:bg-gray-700 mx-4"></div>
+            <div class="flex items-center gap-2 step-indicator" data-step="3">
+              <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex items-center justify-center font-bold">3</div>
+              <span class="hidden md:block">طريقة الدفع</span>
+            </div>
+            <div class="flex-1 h-1 bg-gray-200 dark:bg-gray-700 mx-4"></div>
+            <div class="flex items-center gap-2 step-indicator" data-step="4">
+              <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex items-center justify-center font-bold">4</div>
+              <span class="hidden md:block">مراجعة الطلب</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Shipping Info -->
+          <div id="step1" class="step-content bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold mb-6">بيانات الشحن</h2>
+            <form id="shippingForm" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-semibold mb-2">الاسم الأول</label>
+                  <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-2">اسم العائلة</label>
+                  <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+                </div>
+              </div>
+              <div>
+                <label class="block font-semibold mb-2">البريد الإلكتروني</label>
+                <input type="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+              </div>
+              <div>
+                <label class="block font-semibold mb-2">رقم الهاتف</label>
+                <input type="tel" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+              </div>
+              <div>
+                <label class="block font-semibold mb-2">العنوان</label>
+                <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label class="block font-semibold mb-2">المدينة</label>
+                  <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-2">المنطقة</label>
+                  <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-2">الرمز البريدي</label>
+                  <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700">
+                </div>
+              </div>
+              <div class="flex gap-4 mt-6">
+                <button type="button" id="cancelCheckout" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">إلغاء</button>
+                <button type="submit" class="flex-1 px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-semibold transition">التالي</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 2: Delivery Method -->
+          <div id="step2" class="step-content hidden bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold mb-6">طريقة التوصيل</h2>
+            <div class="space-y-4">
+              <label class="flex items-center gap-4 p-4 border-2 border-yellow-600 rounded-xl cursor-pointer">
+                <input type="radio" name="delivery" value="standard" checked class="w-5 h-5">
+                <div class="flex-1">
+                  <div class="font-semibold">التوصيل العادي</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400">3-5 أيام عمل - مجاني</div>
+                </div>
+                <div class="font-bold">مجاني</div>
+              </label>
+              <label class="flex items-center gap-4 p-4 border-2 border-gray-200 dark:border-gray-700 rounded-xl cursor-pointer hover:border-yellow-600 transition">
+                <input type="radio" name="delivery" value="express" class="w-5 h-5">
+                <div class="flex-1">
+                  <div class="font-semibold">التوصيل السريع</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400">1-2 أيام عمل</div>
+                </div>
+                <div class="font-bold">50 ريال</div>
+              </label>
+            </div>
+            <div class="flex gap-4 mt-6">
+              <button type="button" id="prevStep2" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">السابق</button>
+              <button type="button" id="nextStep2" class="flex-1 px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-semibold transition">التالي</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment Method -->
+          <div id="step3" class="step-content hidden bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold mb-6">طريقة الدفع</h2>
+            <div class="space-y-4">
+              <label class="flex items-center gap-4 p-4 border-2 border-yellow-600 rounded-xl cursor-pointer">
+                <input type="radio" name="payment" value="card" checked class="w-5 h-5">
+                <div class="flex-1">
+                  <div class="font-semibold">بطاقة ائتمانية / مدفوعة مسبقاً</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400">Visa, Mastercard, Mada</div>
+                </div>
+              </label>
+              <label class="flex items-center gap-4 p-4 border-2 border-gray-200 dark:border-gray-700 rounded-xl cursor-pointer hover:border-yellow-600 transition">
+                <input type="radio" name="payment" value="cod" class="w-5 h-5">
+                <div class="flex-1">
+                  <div class="font-semibold">الدفع عند الاستلام</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400">ادفع نقداً عند استلام الطلب</div>
+                </div>
+              </label>
+            </div>
+            <div class="flex gap-4 mt-6">
+              <button type="button" id="prevStep3" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">السابق</button>
+              <button type="button" id="nextStep3" class="flex-1 px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-semibold transition">التالي</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Review -->
+          <div id="step4" class="step-content hidden bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold mb-6">مراجعة الطلب</h2>
+            <div id="reviewContent" class="space-y-6">
+              <!-- Content will be populated -->
+            </div>
+            <div class="flex gap-4 mt-6">
+              <button type="button" id="prevStep4" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">السابق</button>
+              <button type="button" id="confirmOrder" class="flex-1 px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-semibold transition">تأكيد الطلب</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Products -->
+      <section class="mt-16">
+        <h2 class="text-3xl font-bold mb-8">منتجات مقترحة</h2>
+        <div id="recommendedProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+      </section>
+
+      <!-- Trust Badges -->
+      <section class="mt-16 py-12 bg-gray-50 dark:bg-gray-800 rounded-2xl">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div class="text-4xl mb-2">🔒</div>
+              <div class="font-semibold">دفع آمن</div>
+            </div>
+            <div>
+              <div class="text-4xl mb-2">🚚</div>
+              <div class="font-semibold">شحن سريع</div>
+            </div>
+            <div>
+              <div class="text-4xl mb-2">↩️</div>
+              <div class="font-semibold">إرجاع سهل</div>
+            </div>
+            <div>
+              <div class="text-4xl mb-2">💎</div>
+              <div class="font-semibold">ضمان الأصالة</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mt-16">
+        <h2 class="text-3xl font-bold mb-8">أسئلة شائعة</h2>
+        <div class="space-y-4">
+          <div class="faq-item bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="faq-btn w-full flex items-center justify-between p-6 font-semibold">
+              <span>كيف يمكنني تتبع طلبي؟</span>
+              <span>▼</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+              بعد تأكيد الطلب، ستصلك رسالة بريد إلكتروني برقم التتبع. يمكنك استخدام هذا الرقم لتتبع حالة شحنتك على موقعنا.
+            </div>
+          </div>
+          <div class="faq-item bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="faq-btn w-full flex items-center justify-between p-6 font-semibold">
+              <span>ما هي سياسة الإرجاع؟</span>
+              <span>▼</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+              يمكنك إرجاع أي منتج خلال 14 يوم من تاريخ الاستلام بشرط أن يكون بحالته الأصلية مع جميع الملحقات والتغليف.
+            </div>
+          </div>
+          <div class="faq-item bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="faq-btn w-full flex items-center justify-between p-6 font-semibold">
+              <span>هل الشحن مجاني؟</span>
+              <span>▼</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-6 text-gray-600 dark:text-gray-300">
+              نعم، الشحن مجاني لجميع الطلبات التي تزيد قيمتها عن 500 ريال. للطلبات الأقل، تبلغ تكلفة الشحن 25 ريال.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 dark:bg-black text-gray-400 py-12 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 text-white text-xl font-bold mb-4">
+            <img src="images/logo.png" alt="فخامة" class="h-8 w-auto">
+            <span class="font-[Cairo] text-2xl font-extrabold tracking-wide
+             bg-gradient-to-l from-yellow-600 to-yellow-400
+             bg-clip-text text-transparent">
+  فخامة
+</span>
+
+          </div>
+          <p class="text-sm">متجرك المفضل للمنتجات الفاخرة والأنيقة</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">المساعدة</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-yellow-400 transition">الشحن والتوصيل</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">الإرجاع والاستبدال</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">الأسئلة الشائعة</a></li>
+            <li><a href="#" class="hover:text-yellow-400 transition">سياسة الخصوصية</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">روابط سريعة</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-yellow-400 transition">الرئيسية</a></li>
+            <li><a href="shop.html" class="hover:text-yellow-400 transition">المتجر</a></li>
+            <li><a href="index.html#about" class="hover:text-yellow-400 transition">من نحن</a></li>
+            <li><a href="index.html#contact" class="hover:text-yellow-400 transition">تواصل</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-4">تابعنا</h4>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-600 transition">📘</a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-600 transition">📷</a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-600 transition">🐦</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 text-center text-sm">
+        <p>© 2024 فخامة. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    let currentStep = 1;
+
+    function renderCart() {
+      const cart = Storage.getCart();
+      const container = document.getElementById('cartItems');
+      const emptyCart = document.getElementById('emptyCart');
+
+      if (cart.length === 0) {
+        container.innerHTML = '';
+        emptyCart.classList.remove('hidden');
+        updateSummary(0, 0, 0);
+        return;
+      }
+
+      emptyCart.classList.add('hidden');
+      container.innerHTML = '';
+
+      cart.forEach((item, index) => {
+        const product = PRODUCTS.find(p => p.id === item.productId);
+        if (!product) return;
+
+        const itemTotal = product.price * item.quantity;
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700';
+        card.innerHTML = `
+          <div class="flex gap-6">
+            <!-- IMAGE: ${product.imageDesc} -->
+            <a href="product.html?id=${product.id}" class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+              <img src="images/products/${product.id}.png" alt="${product.name}" class="w-full h-full object-cover">
+            </a>
+            <div class="flex-1">
+              <div class="flex justify-between items-start mb-2">
+                <div>
+                  <a href="product.html?id=${product.id}" class="font-semibold hover:text-yellow-600 dark:hover:text-yellow-400 transition">${product.name}</a>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    اللون: ${item.color} | المقاس: ${item.size}
+                  </div>
+                </div>
+                <button class="remove-item text-red-600 hover:text-red-700" data-index="${index}">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 border border-gray-300 dark:border-gray-600 rounded-lg">
+                  <button class="decrease-qty px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700" data-index="${index}">-</button>
+                  <span class="px-4 py-1">${item.quantity}</span>
+                  <button class="increase-qty px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700" data-index="${index}">+</button>
+                </div>
+                <div class="text-lg font-bold">${formatPrice(itemTotal)}</div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Event listeners
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          Storage.removeFromCart(parseInt(btn.dataset.index));
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll('.increase-qty').forEach(btn => {
+        btn.addEventListener('click', () => {
+          Storage.updateCartQuantity(parseInt(btn.dataset.index), cart[parseInt(btn.dataset.index)].quantity + 1);
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll('.decrease-qty').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = parseInt(btn.dataset.index);
+          Storage.updateCartQuantity(index, cart[index].quantity - 1);
+          renderCart();
+        });
+      });
+
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const cart = Storage.getCart();
+      const subtotal = Storage.getCartTotal();
+      const shipping = subtotal >= 500 ? 0 : 25;
+      const tax = subtotal * 0.15;
+      const total = subtotal + shipping + tax;
+
+      document.getElementById('subtotal').textContent = formatPrice(subtotal);
+      document.getElementById('shipping').textContent = shipping === 0 ? 'مجاني' : formatPrice(shipping);
+      document.getElementById('tax').textContent = formatPrice(tax);
+      document.getElementById('total').textContent = formatPrice(total);
+    }
+
+    // Coupon
+    document.getElementById('applyCoupon')?.addEventListener('click', () => {
+      const code = document.getElementById('couponCode').value;
+      const message = document.getElementById('couponMessage');
+      if (code.toLowerCase() === 'خصم10') {
+        message.textContent = 'تم تطبيق الخصم بنجاح!';
+        message.className = 'mt-2 text-sm text-green-600';
+      } else {
+        message.textContent = 'كود خصم غير صحيح';
+        message.className = 'mt-2 text-sm text-red-600';
+      }
+    });
+
+    // Checkout
+    document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+      const cart = Storage.getCart();
+      if (cart.length === 0) {
+        showToast('السلة فارغة', 'error');
+        return;
+      }
+      document.getElementById('checkoutSteps').classList.remove('hidden');
+      window.scrollTo({ top: document.getElementById('checkoutSteps').offsetTop - 100, behavior: 'smooth' });
+    });
+
+    document.getElementById('cancelCheckout')?.addEventListener('click', () => {
+      document.getElementById('checkoutSteps').classList.add('hidden');
+    });
+
+    // Step navigation
+    function showStep(step) {
+      document.querySelectorAll('.step-content').forEach(s => s.classList.add('hidden'));
+      document.getElementById(`step${step}`).classList.remove('hidden');
+      
+      document.querySelectorAll('.step-indicator').forEach((indicator, idx) => {
+        const stepNum = idx + 1;
+        const circle = indicator.querySelector('div');
+        if (stepNum <= step) {
+          indicator.classList.add('active');
+          circle.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-600', 'dark:text-gray-400');
+          circle.classList.add('bg-yellow-600', 'text-white');
+        } else {
+          indicator.classList.remove('active');
+          circle.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-600', 'dark:text-gray-400');
+          circle.classList.remove('bg-yellow-600', 'text-white');
+        }
+      });
+    }
+
+    document.getElementById('shippingForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      currentStep = 2;
+      showStep(2);
+    });
+
+    document.getElementById('nextStep2')?.addEventListener('click', () => {
+      currentStep = 3;
+      showStep(3);
+    });
+
+    document.getElementById('prevStep2')?.addEventListener('click', () => {
+      currentStep = 1;
+      showStep(1);
+    });
+
+    document.getElementById('nextStep3')?.addEventListener('click', () => {
+      currentStep = 4;
+      showStep(4);
+      // Populate review
+      const cart = Storage.getCart();
+      const reviewContent = document.getElementById('reviewContent');
+      reviewContent.innerHTML = `
+        <div class="space-y-4">
+          ${cart.map(item => {
+            const product = PRODUCTS.find(p => p.id === item.productId);
+            return `<div class="flex justify-between">
+              <span>${product.name} × ${item.quantity}</span>
+              <span>${formatPrice(product.price * item.quantity)}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+          <div class="flex justify-between font-bold text-xl">
+            <span>الإجمالي:</span>
+            <span>${document.getElementById('total').textContent}</span>
+          </div>
+        </div>
+      `;
+    });
+
+    document.getElementById('prevStep3')?.addEventListener('click', () => {
+      currentStep = 2;
+      showStep(2);
+    });
+
+    document.getElementById('prevStep4')?.addEventListener('click', () => {
+      currentStep = 3;
+      showStep(3);
+    });
+
+    document.getElementById('confirmOrder')?.addEventListener('click', () => {
+      showToast('تم تأكيد الطلب بنجاح! شكراً لك', 'success');
+      Storage.setCart([]);
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+    });
+
+    // FAQ
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isHidden = content.classList.contains('hidden');
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+        if (isHidden) {
+          content.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Recommended Products
+    const recommended = PRODUCTS.filter(p => p.badges.includes('الأكثر مبيعًا')).slice(0, 4);
+    const recommendedContainer = document.getElementById('recommendedProducts');
+    recommended.forEach(product => {
+      const card = document.createElement('a');
+      card.href = `product.html?id=${product.id}`;
+      card.className = 'group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition';
+      card.innerHTML = `
+        <!-- IMAGE: ${product.imageDesc} -->
+        <div class="aspect-square relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+          <img src="images/products/${product.id}.png" alt="${product.name}" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold mb-2 hover:text-yellow-600 dark:hover:text-yellow-400 transition">${product.name}</h3>
+          <div class="text-lg font-bold text-yellow-600">${formatPrice(product.price)}</div>
+        </div>
+      `;
+      recommendedContainer.appendChild(card);
+    });
+
+    // Search Modal
+    const searchBtn = document.getElementById('searchBtn');
+    const searchModal = document.getElementById('searchModal');
+    const closeSearch = document.getElementById('closeSearch');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchBtn?.addEventListener('click', () => {
+      searchModal.classList.remove('hidden');
+      searchModal.classList.add('flex');
+      setTimeout(() => searchInput.focus(), 100);
+    });
+
+    closeSearch?.addEventListener('click', () => {
+      searchModal.classList.add('hidden');
+      searchModal.classList.remove('flex');
+    });
+
+    searchInput?.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      if (query.length < 2) {
+        searchResults.innerHTML = '';
+        return;
+      }
+      const results = PRODUCTS.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        p.category.toLowerCase().includes(query) ||
+        p.shortDesc.toLowerCase().includes(query)
+      ).slice(0, 5);
+      searchResults.innerHTML = results.map(p => `
+        <a href="product.html?id=${p.id}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 mb-2">
+          <div class="font-semibold">${p.name}</div>
+          <div class="text-sm text-gray-500">${formatPrice(p.price)}</div>
+        </a>
+      `).join('');
+    });
+
+    // Mobile Menu
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('hidden');
+    });
+    document.getElementById('closeMobileMenu')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('hidden');
+    });
+
+    // Initial render
+    renderCart();
+  </script>
+</body>
+</html>
+
