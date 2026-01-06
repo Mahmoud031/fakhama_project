@@ -1,8 +1,4 @@
-// ============================================
-// SHARED UTILITIES & DATA MODEL
-// ============================================
 
-// Mock Product Catalog (Arabic)
 const PRODUCTS = [
   {
     id: 1,
